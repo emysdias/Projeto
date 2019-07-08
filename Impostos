@@ -1,0 +1,13 @@
+
+package entities;
+
+
+
+public class Impostos extends Despesas {
+
+	
+	private String impostos;
+	public Impostos(int year, double totalValue, String type, String category) {
+		super(year, totalValue, type, category);
+    }
+}
