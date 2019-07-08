@@ -1,0 +1,109 @@
+package application;
+
+
+import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+import entities.Despesas;
+import entities.Manutencao;
+import entities.Multas;
+import entities.Seguro;
+import entities.Abastecimento;
+import entities.Impostos;
+
+
+public class Program {
+
+	//private static int leitura;
+
+	public static void main(String[] args) {
+		
+
+		Scanner sc = new Scanner(System.in);
+		/*Locale.setDefault(Locale.US);
+		List<Automovel> listaDeAutomoveis = new ArrayList<>();
+		List<Despesas> listaDeDespesas = new ArrayList<>();*/
+		//System.out.print("Enter the number of cars to be registered: ");
+		
+		for(;;){
+			int leitura = Integer.parseInt(JOptionPane.showInputDialog("1- Cadastro do veículo\n2- Abastecer veículo\n3- Despesa do automóvel\n4- Despesa de manutenção\n5- Relatório Simples\n6- Relatório de Desempenho\n0- Sair"));
+		switch (leitura){
+		
+			case 0:
+			JOptionPane.showMessageDialog(null,"Saindo...");
+			System.exit(0);
+			break;
+			case 1: 
+				try{
+				String marca = JOptionPane.showInputDialog("Digite a marca:");
+				String modelo = JOptionPane.showInputDialog("Digite o modelo:");
+				int anoDeModelo = Integer.parseInt(JOptionPane.showInputDialog("Digite ano de modelo (inteiro):"));
+				int anoDeFabricacao = Integer.parseInt(JOptionPane.showInputDialog("Digite ano de fabricação (inteiro):"));
+				float motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite a motorização (float):"));
+				String cor = JOptionPane.showInputDialog("Digite a cor:");
+				String numPlaca = JOptionPane.showInputDialog("Digite o número da placa:");
+				int numRenavam = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da Renavam (inteiro):"));				
+				int resp = JOptionPane.showConfirmDialog(null, "O veículo é flex? ");
+				
+				if(resp==1){
+					String combustivel1 = JOptionPane.showInputDialog("Digite o tipo de combustível:");
+					Automovel carro = new Automovel(marca, modelo, anoDeFabricacao, anoDeModelo, motorizacao,
+							combustivel1, cor, numPlaca, numRenavam);
+				}else if(resp==0){
+					String combustivel1 = JOptionPane.showInputDialog("Digite o tipo de combustível 1:");
+					String combustivel2 = JOptionPane.showInputDialog("Digite o tipo de combustível 2:");
+					
+					AutomovelFlex carroFlex = new AutomovelFlex(marca, modelo, anoDeFabricacao, anoDeModelo, motorizacao,
+							combustivel1, combustivel2, cor, numPlaca, numRenavam);
+				}
+				JOptionPane.showMessageDialog(null,"AGORA AS DESPESAS DO VEÍCULO");
+				
+				try{
+					String type = JOptionPane.showInputDialog("Digite o nome da despesa:");
+					int year = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano da despesa (inteiro):"));
+					String category = JOptionPane.showInputDialog("Digite a categoria da despesa:");
+					double totalValue = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total da despesa (double):"));
+				}catch(java.lang.NumberFormatException e){
+					JOptionPane.showMessageDialog(null,"Digite o formato pedido");
+				}
+				
+				
+				}catch(java.lang.NumberFormatException e){
+					JOptionPane.showMessageDialog(null,"Digite o formato pedido");
+					
+				}
+
+				break;
+				
+			case 2:
+				String placa1 = JOptionPane.showInputDialog("Digite a placa do veículo para abastecimento: ");
+				
+				break;
+			case 3:
+				String placa2 = JOptionPane.showInputDialog("Digite a placa do veículo para a despesa do veículo");
+				String type = JOptionPane.showInputDialog("Digite o nome da despesa:");
+				int year = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano da despesa (inteiro):"));
+				String category2 = JOptionPane.showInputDialog("Digite a categoria da despesa:");
+				double totalValue2 = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total:"));
+				break;
+			case 4:
+				String placa3 = JOptionPane.showInputDialog("Digite a placa do veículo para informar despesa de manutenção: ");
+				String category3 = JOptionPane.showInputDialog("Digite o nome da despesa de manutenção:");
+				float quilometragem = Float.parseFloat(JOptionPane.showInputDialog("Digite a quilometragem:"));
+				double totalValue3 = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total:"));
+				
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			default:
+				JOptionPane.showMessageDialog(null,"Digite uma opção válida");
+				break;
+		}
+		}
+
+}
+}
