@@ -1,0 +1,35 @@
+package entities;
+
+
+
+import java.util.Date;
+
+
+
+public class Abastecimento extends Despesas {
+
+
+
+	public Abastecimento(int year, double totalValue, String type, String category) {
+		super(year, totalValue, type, category);
+	}
+
+	private Date data;
+	private String tipoDeCombustivel;
+	private float quilometragem;
+	private float valorDoLitro;
+	private double tipoDoAbastecimento;
+	private float valorAbastecido;
+
+	//super.type = "Abastecimento";
+
+	
+
+	public double Abastecimento(float valorDoLitro, float litrosAbastecidos  ) {
+
+		this.valorAbastecido = valorDoLitro * litrosAbastecidos; 
+		return valorDoLitro * litrosAbastecidos;
+
+	}
+
+}
