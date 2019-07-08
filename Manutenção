@@ -1,0 +1,18 @@
+
+package entities;
+
+
+
+public class Manutencao extends Despesas {
+
+	private float quilometragem;
+
+
+	public Manutencao(int year, double totalValue, String type, float quilometragem, String category) {
+
+		super(year, totalValue, type, category);
+		this.quilometragem = quilometragem;
+
+	}
+
+}
