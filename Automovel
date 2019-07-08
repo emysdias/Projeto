@@ -1,0 +1,112 @@
+package application;
+
+
+
+import entities.Despesas;
+
+public class Automovel {
+
+	private String marca;
+	private String modelo;
+	private int anoDeFabricacao;
+	protected int anoDeModelo;
+	public float motorizacao;
+	protected String combustivel1;
+	public String cor;
+	protected String numPlaca;
+	protected int numRenavam;
+	protected Despesas desp;
+
+	public Automovel(String marca, String modelo, int anoDeFabricacao, int anoDeModelo, float motorizacao,
+
+			String combustivel1, String cor, String numPlaca, int numRenavam) {
+
+		super();
+		this.marca = marca;
+		this.modelo = modelo;
+		this.anoDeFabricacao = anoDeFabricacao;
+		this.anoDeModelo = anoDeModelo;
+		this.motorizacao = motorizacao;
+		this.combustivel1 = combustivel1;
+		this.cor = cor;
+		this.numPlaca = numPlaca;
+		this.numRenavam = numRenavam;
+
+	}
+
+	
+	public String getMarca() {
+		return marca;
+	}
+
+
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public int getAnoDeFabricacao() {
+		return anoDeFabricacao;
+	}
+
+	public void setAnoDeFabricacao(int anoDeFabricacao) {
+		this.anoDeFabricacao = anoDeFabricacao;
+	}
+
+	public int getAnoDeModelo() {
+		return anoDeModelo;
+	}
+
+	public void setAnoDeModelo(int anoDeModelo) {
+		this.anoDeModelo = anoDeModelo;
+	}
+
+	public float getMotorizacao() {
+		return motorizacao;
+	}
+
+	public void setMotorizacao(float motorizacao) {
+		this.motorizacao = motorizacao;
+	}
+
+	public String getCombustivel1() {
+		return combustivel1;
+	}
+
+	public void setCombustivel1(String combustivel1) {
+		this.combustivel1 = combustivel1;
+	}
+
+	public String getCor() {
+		return cor;
+	}
+
+	public void setCor(String cor) {
+		this.cor = cor;
+	}
+
+	public String getNumPlaca() {
+		return numPlaca;
+	}
+
+	public void setNumPlaca(String numPlaca) {
+		this.numPlaca = numPlaca;
+	}
+
+	public int getNumRenavam() {
+		return numRenavam;
+	}
+
+	public void setNumRenavam(int numRenavam) {
+		this.numRenavam = numRenavam;
+	}
+
+}
