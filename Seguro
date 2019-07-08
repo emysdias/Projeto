@@ -1,0 +1,36 @@
+
+package entities;
+
+
+
+public class Seguro extends Despesas {
+
+
+
+	public Seguro(int year, double totalValue, String type, String category) {
+		super(year, totalValue, type, category);
+		
+	}
+
+	private String empresa;
+	private float valorDoSeguro;
+	public String getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(String empresa) {
+		this.empresa = empresa;
+	}
+
+	public float getValorDoSeguro() {
+		return valorDoSeguro;
+	}
+
+	public void setValorDoSeguro(float valorDoSeguro) {
+		this.valorDoSeguro = valorDoSeguro;
+	}
+	//super.type = "Seguro";
+
+
+}
+
