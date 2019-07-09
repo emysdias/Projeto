@@ -7,8 +7,8 @@ public class Seguro extends Despesas {
 
 
 
-	public Seguro(int year, double totalValue, String type, String category) {
-		super(year, totalValue, type, category);
+	public Seguro(int year, double totalValue, String type) {
+		super(year, totalValue, type);
 		
 	}
 
@@ -29,7 +29,6 @@ public class Seguro extends Despesas {
 	public void setValorDoSeguro(float valorDoSeguro) {
 		this.valorDoSeguro = valorDoSeguro;
 	}
-	//super.type = "Seguro";
 
 
 }
