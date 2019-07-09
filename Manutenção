@@ -6,13 +6,23 @@ package entities;
 public class Manutencao extends Despesas {
 
 	private float quilometragem;
-
-
-	public Manutencao(int year, double totalValue, String type, float quilometragem, String category) {
-
-		super(year, totalValue, type, category);
+	private double totalValue;
+	private String type;
+	
+	public Manutencao(double totalValue, String type, float quilometragem) {
+		
 		this.quilometragem = quilometragem;
+		this.totalValue = totalValue;
+		this.type = type;
 
 	}
+
+	@Override
+	public String toString() {
+		return "Manutencao [quilometragem=" + quilometragem + ", totalValue="
+				+ totalValue + ", type=" + type + "]";
+	}
+
+	
 
 }
