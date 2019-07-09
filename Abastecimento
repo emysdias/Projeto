@@ -2,11 +2,21 @@ package entities;
 
 
 
+
+
+
+
 import java.util.Date;
 
 
 
+
+
+
+
 public class Abastecimento extends Despesas {
+
+
 
 	private float anterior;
 	private float atual;
@@ -17,16 +27,21 @@ public class Abastecimento extends Despesas {
 	private double tipoDoAbastecimento;
 	private float valorAbastecido;
 
-	
 
 	public Abastecimento(String tipoDeCombustivel, float quilometragem, float valorDoLitro,
+
 			double tipoDoAbastecimento) {
+
 		
+
 		this.tipoDeCombustivel = tipoDeCombustivel;
 		this.quilometragem = quilometragem;
 		this.valorDoLitro = valorDoLitro;
 		this.tipoDoAbastecimento = tipoDoAbastecimento;
+
 	}
+
+
 
 	public double Abastecimento(float valorDoLitro, float litrosAbastecidos  ) {
 
@@ -35,8 +50,5 @@ public class Abastecimento extends Despesas {
 
 	}
 
-	
-
-	
 
 }
