@@ -16,25 +16,21 @@ import entities.Impostos;
 
 public class Program {
 
-	//private static int leitura;
-
+	
 	public static void main(String[] args) {
 		
-
-		Scanner sc = new Scanner(System.in);
-		/*Locale.setDefault(Locale.US);
-		List<Automovel> listaDeAutomoveis = new ArrayList<>();
-		List<Despesas> listaDeDespesas = new ArrayList<>();*/
-		//System.out.print("Enter the number of cars to be registered: ");
+		ArrayList<Automovel> car = new ArrayList<>();
+		int saida = 1;
 		
-		for(;;){
-			int leitura = Integer.parseInt(JOptionPane.showInputDialog("1- Cadastro do veículo\n2- Abastecer veículo\n3- Despesa do automóvel\n4- Despesa de manutenção\n5- Relatório Simples\n6- Relatório de Desempenho\n0- Sair"));
+		for(;saida!=0;){
+			int leitura = Integer.parseInt(JOptionPane.showInputDialog("1   Cadastro do veículo\n2  Despesas\n3  Relatórios\n0  Sair"));
 		switch (leitura){
 		
 			case 0:
 			JOptionPane.showMessageDialog(null,"Saindo...");
-			System.exit(0);
+			saida = 0;
 			break;
+			
 			case 1: 
 				try{
 				String marca = JOptionPane.showInputDialog("Digite a marca:");
@@ -47,27 +43,25 @@ public class Program {
 				int numRenavam = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da Renavam (inteiro):"));				
 				int resp = JOptionPane.showConfirmDialog(null, "O veículo é flex? ");
 				
+				
 				if(resp==1){
 					String combustivel1 = JOptionPane.showInputDialog("Digite o tipo de combustível:");
 					Automovel carro = new Automovel(marca, modelo, anoDeFabricacao, anoDeModelo, motorizacao,
 							combustivel1, cor, numPlaca, numRenavam);
+					car.add(carro);
+					//JOptionPane.showMessageDialog(null,car.get(car.size()-1).toString());
+					
+					
 				}else if(resp==0){
 					String combustivel1 = JOptionPane.showInputDialog("Digite o tipo de combustível 1:");
 					String combustivel2 = JOptionPane.showInputDialog("Digite o tipo de combustível 2:");
 					
-					AutomovelFlex carroFlex = new AutomovelFlex(marca, modelo, anoDeFabricacao, anoDeModelo, motorizacao,
-							combustivel1, combustivel2, cor, numPlaca, numRenavam);
-				}
-				JOptionPane.showMessageDialog(null,"AGORA AS DESPESAS DO VEÍCULO");
-				
-				try{
-					String type = JOptionPane.showInputDialog("Digite o nome da despesa:");
-					int year = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano da despesa (inteiro):"));
-					String category = JOptionPane.showInputDialog("Digite a categoria da despesa:");
-					double totalValue = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total da despesa (double):"));
-				}catch(java.lang.NumberFormatException e){
-					JOptionPane.showMessageDialog(null,"Digite o formato pedido");
-				}
+					Automovel carro = new Automovel(marca, modelo, anoDeFabricacao, anoDeModelo, motorizacao,
+							combustivel1, cor, numPlaca, numRenavam);
+					carro.setCombustivel2(combustivel2);
+					car.add(carro);
+					//JOptionPane.showMessageDialog(null,car.get(car.size()-1).toString());
+				}			
 				
 				
 				}catch(java.lang.NumberFormatException e){
@@ -78,27 +72,59 @@ public class Program {
 				break;
 				
 			case 2:
-				String placa1 = JOptionPane.showInputDialog("Digite a placa do veículo para abastecimento: ");
+				int desp = Integer.parseInt(JOptionPane.showInputDialog("1  Despesa de automóvel\n2  Despesa de abastecimento\n3  Despesas de manutenção\n"));
+				
+				switch (desp){
+				
+				case 1:
+					String type = JOptionPane.showInputDialog("Digite o nome da despesa:");
+					int year = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano da despesa (inteiro):"));
+					double totalValue2 = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total:"));
+					
+					Automovel auto = car.get(car.size()-1);
+					auto.addDespesas(new Despesas(year,totalValue2,type));
+					car.add(car.size()-1,auto);
+					System.out.println(car.get(car.size()-1).getDespesas());
+					
+					break;
+				case 2:
+					String data = JOptionPane.showInputDialog("Digite a data do abastecimento:");
+					String combustivel1 = JOptionPane.showInputDialog("Digite o nome do combustível:");
+					float quilometragem1 = Float.parseFloat(JOptionPane.showInputDialog("Digite a quilometragem:"));
+					float valorLitro = Float.parseFloat(JOptionPane.showInputDialog("Digite o valor do litro:"));
+					float valorTotal = Float.parseFloat(JOptionPane.showInputDialog("Digite o valor total abastecido:"));
+					int tanque = JOptionPane.showConfirmDialog(null, "Tanque cheio? ");
+					break;
+					
+				case 3:
+					String category3 = JOptionPane.showInputDialog("Digite o nome da despesa de manutenção:");
+					float quilometragem2 = Float.parseFloat(JOptionPane.showInputDialog("Digite a quilometragem:"));
+					double totalValue3 = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total:"));
+					break;
+				default:
+					JOptionPane.showMessageDialog(null,"Digite uma opção válida");
+					
+						
+				}		
 				
 				break;
 			case 3:
-				String placa2 = JOptionPane.showInputDialog("Digite a placa do veículo para a despesa do veículo");
-				String type = JOptionPane.showInputDialog("Digite o nome da despesa:");
-				int year = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano da despesa (inteiro):"));
-				String category2 = JOptionPane.showInputDialog("Digite a categoria da despesa:");
-				double totalValue2 = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total:"));
-				break;
-			case 4:
-				String placa3 = JOptionPane.showInputDialog("Digite a placa do veículo para informar despesa de manutenção: ");
-				String category3 = JOptionPane.showInputDialog("Digite o nome da despesa de manutenção:");
-				float quilometragem = Float.parseFloat(JOptionPane.showInputDialog("Digite a quilometragem:"));
-				double totalValue3 = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total:"));
+				int select = Integer.parseInt(JOptionPane.showInputDialog("1  Relatório Simples\n2  Relatório de desempenho\n"));
+				
+				switch(select){
+					case 1:
+						int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do vetor para relatório"));
+						JOptionPane.showMessageDialog(null,car.get(valor).toString());
+						break;
+					case 2:
+						break;
+					default:
+						JOptionPane.showMessageDialog(null,"Digite uma opção válida");
+						break;					
+				}
 				
 				break;
-			case 5:
-				break;
-			case 6:
-				break;
+				
 			default:
 				JOptionPane.showMessageDialog(null,"Digite uma opção válida");
 				break;
