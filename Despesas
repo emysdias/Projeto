@@ -10,7 +10,7 @@ public class Despesas {
 	private int year;
 	private double totalValue;
 	private String type;
-	
+	public Despesas(){}
 
 	public Despesas(int year, double totalValue, String type) {
 		this.year = year;
