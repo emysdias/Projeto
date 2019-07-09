@@ -72,8 +72,8 @@ public class Program {
 				break;
 				
 			case 2:
-				int desp = Integer.parseInt(JOptionPane.showInputDialog("1  Despesa de automóvel\n2  Despesa de abastecimento\n3  Despesas de manutenção\n"));
 				
+				int desp = Integer.parseInt(JOptionPane.showInputDialog("1  Despesa de automóvel\n2  Despesa de abastecimento\n3  Despesas de manutenção\n"));
 				switch (desp){
 				
 				case 1:
@@ -94,6 +94,12 @@ public class Program {
 					float valorLitro = Float.parseFloat(JOptionPane.showInputDialog("Digite o valor do litro:"));
 					float valorTotal = Float.parseFloat(JOptionPane.showInputDialog("Digite o valor total abastecido:"));
 					int tanque = JOptionPane.showConfirmDialog(null, "Tanque cheio? ");
+					
+					Automovel abast = car.get(car.size()-1);
+					abast.addAbastecimento(new Abastecimento(combustivel1,quilometragem1,valorLitro,tanque));
+					car.add(car.size()-1,abast);
+					System.out.println(car.get(car.size()-1).getAbastecimento());
+					
 					break;
 					
 				case 3:
