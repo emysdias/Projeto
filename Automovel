@@ -4,11 +4,13 @@ package application;
 
 import java.util.ArrayList;
 
+import entities.Abastecimento;
 import entities.Despesas;
 
 public class Automovel {
 	
 	private ArrayList<Despesas> despesa = new ArrayList();
+	private ArrayList<Abastecimento> abastecimento = new ArrayList();
 	
 	private String marca;
 	private String modelo;
@@ -30,6 +32,19 @@ public class Automovel {
 		
 		for(int i=0; i< despesa.size();i++)
 			s+= "\n"+despesa.get(i).toString();
+		return s;
+		
+	}
+	
+	public void addAbastecimento(Abastecimento a){
+		abastecimento.add(a); 
+	}
+	
+	public String getAbastecimento(){
+		String s ="";
+		
+		for(int i=0; i< abastecimento.size();i++)
+			s+= "\n"+abastecimento.get(i).toString();
 		return s;
 		
 	}
