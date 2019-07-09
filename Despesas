@@ -4,8 +4,8 @@ package entities;
 
 import java.util.Date;
 
-public class Despesas {
 
+public class Despesas {
 
 	private int year;
 	private double totalValue;
