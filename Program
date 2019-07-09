@@ -10,25 +10,16 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 import entities.Despesas;
+import entities.Financiamento;
 import entities.Manutencao;
 import entities.Multas;
 import entities.Seguro;
 import entities.Abastecimento;
 import entities.Impostos;
 
-
-
-
-
 public class Program {
 
-
-
-	
-
 	public static void main(String[] args) {
-
-		
 
 		ArrayList<Automovel> car = new ArrayList<>();
 		int saida = 1;
@@ -86,14 +77,41 @@ public class Program {
 				switch (desp){		
 
 				case 1:
+					int op = Integer.parseInt(JOptionPane.showInputDialog("1  Imposto\n2  Seguro\n3  Financiamento\n4  Multas\n"));
 					String type = JOptionPane.showInputDialog("Digite o nome da despesa:");
 					int year = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano da despesa (inteiro):"));
 					double totalValue2 = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total:"));
-
-					Automovel auto = car.get(car.size()-1);
+					
+					switch(op){
+						case 1:
+							Automovel imp = car.get(car.size()-1);
+							imp.addImpostos(new Impostos(year,totalValue2,type));
+							car.add(car.size()-1,imp);
+							break;
+						case 2:
+							Automovel seg = car.get(car.size()-1);
+							seg.addSeguro(new Seguro(year,totalValue2,type));
+							car.add(car.size()-1,seg);
+							break;
+						case 3:
+							Automovel fin = car.get(car.size()-1);
+							fin.addFinanciamento(new Financiamento(year,totalValue2,type));
+							car.add(car.size()-1,fin);
+							System.out.println(car.get(car.size()-1).getFinanciamento());
+							break;
+						case 4:
+							Automovel mul = car.get(car.size()-1);
+							mul.addMultas(new Multas(year,totalValue2,type));
+							car.add(car.size()-1,mul);
+							break;
+						default:
+							JOptionPane.showMessageDialog(null,"Digite uma opção válida");
+							break;
+					}
+					/*Automovel auto = car.get(car.size()-1);
 					auto.addDespesas(new Despesas(year,totalValue2,type));
-					car.add(car.size()-1,auto);
-					System.out.println(car.get(car.size()-1).getDespesas());
+					car.add(car.size()-1,auto);*/
+					//System.out.println(car.get(car.size()-1).getDespesas());
 
 					break;
 
@@ -124,8 +142,8 @@ public class Program {
 					break;
 					
 				default:
-					JOptionPane.showMessageDialog(null,"Digite uma opção válida");			
-
+					JOptionPane.showMessageDialog(null,"Digite uma opção válida");
+					break;
 				}		
 
 				break;
