@@ -10,11 +10,6 @@ public class Abastecimento extends Despesas {
 
 	private float anterior;
 	private float atual;
-
-	public Abastecimento(int year, double totalValue, String type) {
-		super(year, totalValue, type);
-	}
-	
 	private Date data;
 	private String tipoDeCombustivel;
 	private float quilometragem;
@@ -22,9 +17,16 @@ public class Abastecimento extends Despesas {
 	private double tipoDoAbastecimento;
 	private float valorAbastecido;
 
-	//super.type = "Abastecimento";
-
 	
+
+	public Abastecimento(String tipoDeCombustivel, float quilometragem, float valorDoLitro,
+			double tipoDoAbastecimento) {
+		
+		this.tipoDeCombustivel = tipoDeCombustivel;
+		this.quilometragem = quilometragem;
+		this.valorDoLitro = valorDoLitro;
+		this.tipoDoAbastecimento = tipoDoAbastecimento;
+	}
 
 	public double Abastecimento(float valorDoLitro, float litrosAbastecidos  ) {
 
