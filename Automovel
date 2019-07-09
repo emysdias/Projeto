@@ -11,7 +11,11 @@ import java.util.ArrayList;
 
 
 import entities.Abastecimento;
+import entities.Financiamento;
+import entities.Impostos;
 import entities.Manutencao;
+import entities.Multas;
+import entities.Seguro;
 
 import entities.Despesas;
 
@@ -24,6 +28,10 @@ public class Automovel {
 	private ArrayList<Despesas> despesa = new ArrayList();
 	private ArrayList<Abastecimento> abastecimento = new ArrayList();
 	private ArrayList<Manutencao> manutencao = new ArrayList();
+	private ArrayList<Impostos> impostos = new ArrayList();
+	private ArrayList<Multas> multas = new ArrayList();
+	private ArrayList<Financiamento> financiamento = new ArrayList();
+	private ArrayList<Seguro> seguro = new ArrayList();
 	
 	private String marca;
 	private String modelo;
@@ -38,7 +46,7 @@ public class Automovel {
 
 	
 
-	public void addDespesas(Despesas d){
+	/*public void addDespesas(Despesas d){
 
 		despesa.add(d); 
 
@@ -50,7 +58,7 @@ public class Automovel {
 			s+= "\n"+despesa.get(i).toString();
 		return s;
 
-	}
+	}*/
 
 
 	public void addAbastecimento(Abastecimento a){
@@ -76,6 +84,47 @@ public class Automovel {
 			s+= "\n"+manutencao.get(i).toString();
 		return s;
 	}
+	
+	public void addImpostos(Impostos i){
+		impostos.add(i);
+	}
+	public String getImpostos(){
+		String s ="";
+		for(int i=0; i< impostos.size();i++)
+			s+= "\n"+impostos.get(i).toString();
+		return s;
+	}
+	
+	public void addMultas(Multas mm){
+		multas.add(mm);
+	}
+	public String getMultas(){
+		String s ="";
+		for(int i=0; i< multas.size();i++)
+			s+= "\n"+multas.get(i).toString();
+		return s;
+	}
+	
+	public void addFinanciamento(Financiamento f){
+		financiamento.add(f);
+	}
+	public String getFinanciamento(){
+		String s ="";
+		for(int i=0; i< financiamento.size();i++)
+			s+= "\n"+financiamento.get(i).toString();
+		return s;
+	}
+	
+	public void addSeguro(Seguro ss){
+		seguro.add(ss);
+	}
+	public String getSeguro(){
+		String s ="";
+		for(int i=0; i< seguro.size();i++)
+			s+= "\n"+seguro.get(i).toString();
+		return s;
+	}
+	
 
 	public Automovel(String marca, String modelo, int anoDeFabricacao, int anoDeModelo, float motorizacao,
 			String combustivel1, String cor, String numPlaca, int numRenavam) {
