@@ -8,12 +8,13 @@ import java.util.Date;
 
 public class Abastecimento extends Despesas {
 
+	private float anterior;
+	private float atual;
 
-
-	public Abastecimento(int year, double totalValue, String type, String category) {
-		super(year, totalValue, type, category);
+	public Abastecimento(int year, double totalValue, String type) {
+		super(year, totalValue, type);
 	}
-
+	
 	private Date data;
 	private String tipoDeCombustivel;
 	private float quilometragem;
@@ -31,5 +32,9 @@ public class Abastecimento extends Despesas {
 		return valorDoLitro * litrosAbastecidos;
 
 	}
+
+	
+
+	
 
 }
