@@ -1,11 +1,5 @@
 package application;
 
-
-
-
-
-
-
 import java.util.ArrayList;
 
 
@@ -18,8 +12,6 @@ import entities.Multas;
 import entities.Seguro;
 
 import entities.Despesas;
-
-
 
 public class Automovel {
 
