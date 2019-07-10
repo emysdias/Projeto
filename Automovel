@@ -46,7 +46,7 @@ public class Automovel {
 
 	
 
-	/*public void addDespesas(Despesas d){
+	public void addDespesas(Despesas d){
 
 		despesa.add(d); 
 
@@ -58,7 +58,7 @@ public class Automovel {
 			s+= "\n"+despesa.get(i).toString();
 		return s;
 
-	}*/
+	}
 
 
 	public void addAbastecimento(Abastecimento a){
