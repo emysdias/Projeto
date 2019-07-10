@@ -1,7 +1,5 @@
 package entities;
 
-import java.util.Date;
-
 
 public class Despesas {
 
@@ -48,19 +46,19 @@ public class Despesas {
 		
 		if(op==1){
 			
-		return "\nDespesas:\n\n>>Imposto " + "\nNome da despesa = " + type + "\nTotal pago = " + totalValue
-				+ "\nAno em que ocorreu = " + year + "";
+		return "\nDespesas:\n\n>>Imposto" + "\nNome da Despesa: " + type + "\nTotal pago: " + totalValue
+				+ "\nAno de Ocorrência: " + year + "\n";
 		}
 		else if(op==2){
-			return "\nDespesas:\n\n>>Seguro " + "\nNome da despesa = " + type + "\nTotal pago = " + totalValue
-					+ "\nAno em que ocorreu = " + year + "";
+			return "\nDespesas:\n\n>>Seguro" + "\nNome da despesa: " + type + "\nTotal pago: " + totalValue
+					+ "\nAno de Ocorrência: " + year + "\n";
 		}
 		else if(op==3){
-			return "\nDespesas:\n\n>>Financiamento " + "\nNome da despesa = " + type + "\nTotal pago = " + totalValue
-					+ "\nAno em que ocorreu = " + year + "";
+			return "\nDespesas:\n\n>>Financiamento" + "\nNome da despesa: " + type + "\nTotal pago: " + totalValue
+					+ "\nAno de Ocorrência: " + year + "\n";
 		}
-		return "\nDespesas:\n\n>>Multas " + "\nNome da despesa = " + type + "\nTotal pago = " + totalValue
-				+ "\nAno em que ocorreu = " + year + "";
+		return "\nDespesas:\n\n>>Multas" + "\nNome da despesa: " + type + "\nTotal pago: " + totalValue
+				+ "\nAno de Ocorrência: " + year + "\n";
 		
 	}
 
