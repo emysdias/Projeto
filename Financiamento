@@ -3,7 +3,6 @@ package entities;
 public class Financiamento extends Despesas{
 	
 	public Financiamento(int year, double totalValue, String type) {
-		super(year, totalValue, type);
 
 	}
 
