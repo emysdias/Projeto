@@ -23,6 +23,7 @@ public class Program {
 
 		ArrayList<Automovel> car = new ArrayList<>();
 		int a=0,b=0,c=0;
+		int verify=0;
 		int saida = 1;
 		
 		for(;saida!=0;){
@@ -64,7 +65,7 @@ public class Program {
 					car.add(carro);
 					//JOptionPane.showMessageDialog(null,car.get(car.size()-1).toString());
 				}			
-
+				verify++;
 				}catch(java.lang.NumberFormatException e){
 					JOptionPane.showMessageDialog(null,"Digite o formato pedido");
 				}
@@ -75,6 +76,10 @@ public class Program {
 
 			case 2:
 				
+				if(verify==0){
+					JOptionPane.showMessageDialog(null,"Cadastre um carro primeiro");
+					break;
+				}
 				
 				int desp = Integer.parseInt(JOptionPane.showInputDialog("1  Despesa de automóvel\n2  Despesa de abastecimento\n3  Despesas de manutenção\n"));
 				switch (desp){		
@@ -153,13 +158,17 @@ public class Program {
 				break;
 
 			case 3:
+				
+				if(verify==0){
+					JOptionPane.showMessageDialog(null,"Cadastre um carro primeiro");
+					break;
+				}
+				
 				int select = Integer.parseInt(JOptionPane.showInputDialog("1  Relatório Simples\n2  Relatório de desempenho\n"));
 			
-
 				switch(select){
 					case 1:
-						
-						try{
+							
 						int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do vetor para relatório"));
 						
 						if(a == 0 && b == 0 && c == 0){
@@ -176,9 +185,7 @@ public class Program {
 							JOptionPane.showMessageDialog(null,car.get(valor).getDespesas());
 							}
 						
-						}catch(java.lang.IndexOutOfBoundsException e){
-							JOptionPane.showMessageDialog(null,"Não existe vetor com esse número");
-						}
+						
 						break;
 
 					case 2:
