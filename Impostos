@@ -8,6 +8,8 @@ public class Impostos extends Despesas {
 	
 	private String impostos;
 	public Impostos(int year, double totalValue, String type) {
-		super(year, totalValue, type);
 			}
+
+	
+
 }
