@@ -1,209 +1,370 @@
 package application;
 
 
-
-
-
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+//import java.util.List;
+//import java.util.Locale;
+//import java.util.Scanner;
 import entities.Despesas;
-import entities.Financiamento;
 import entities.Manutencao;
-import entities.Multas;
-import entities.Seguro;
 import entities.Abastecimento;
-import entities.Impostos;
+
 
 public class Program {
 
 	public static void main(String[] args) {
 
-		ArrayList<Automovel> car = new ArrayList<>();
-		int a=0,b=0,c=0;
-		int verify=0;
-		int saida = 1;
+		ArrayList<Automovel> car = new ArrayList<Automovel>(); // Vetor de Objeto Automovel
+		int a = 0,b = 0,c = 0;
+		int verify = 0;
+		int saida = 1; // Variável para encerrar o FOR abaixo, caso o usuário escolha SAIR
+		int leitura = 0;
 		
 		for(;saida!=0;){
-			int leitura = Integer.parseInt(JOptionPane.showInputDialog("1   Cadastro do veículo\n2  Despesas\n3  Relatórios\n0  Sair"));
-		switch (leitura){
-			case 0:
-			JOptionPane.showMessageDialog(null,"Saindo...");
-			saida = 0;
-			break;
-
-			case 1: 
-				try{
-				String marca = JOptionPane.showInputDialog("Digite a marca:");
-				String modelo = JOptionPane.showInputDialog("Digite o modelo:");
-				int anoDeModelo = Integer.parseInt(JOptionPane.showInputDialog("Digite ano de modelo (inteiro):"));
-				int anoDeFabricacao = Integer.parseInt(JOptionPane.showInputDialog("Digite ano de fabricação (inteiro):"));
-				float motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite a motorização (float):"));
-				String cor = JOptionPane.showInputDialog("Digite a cor:");
-				String numPlaca = JOptionPane.showInputDialog("Digite o número da placa:");
-				int numRenavam = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da Renavam (inteiro):"));				
-				int resp = JOptionPane.showConfirmDialog(null, "O veículo é flex? ");
-			
-
-				if(resp==1){
-
-					String combustivel1 = JOptionPane.showInputDialog("Digite o tipo de combustível:");
-					Automovel carro = new Automovel(marca, modelo, anoDeFabricacao, anoDeModelo, motorizacao,
-							combustivel1, cor, numPlaca, numRenavam);
-					car.add(carro);
-					//JOptionPane.showMessageDialog(null,car.get(car.size()-1).toString());
-
-				}else if(resp==0){
-					String combustivel1 = JOptionPane.showInputDialog("Digite o tipo de combustível 1:");
-					String combustivel2 = JOptionPane.showInputDialog("Digite o tipo de combustível 2:");
-
-					Automovel carro = new Automovel(marca, modelo, anoDeFabricacao, anoDeModelo, motorizacao,
-							combustivel1, cor, numPlaca, numRenavam);
-					carro.setCombustivel2(combustivel2);
-					car.add(carro);
-					//JOptionPane.showMessageDialog(null,car.get(car.size()-1).toString());
-				}			
-				verify++;
-				}catch(java.lang.NumberFormatException e){
-					JOptionPane.showMessageDialog(null,"Digite o formato pedido");
-				}
-
+			try {
+			leitura = Integer.parseInt(JOptionPane.showInputDialog("1)  Cadastro do veículo\n2)  Despesas\n3)  Relatórios\n0)  Sair"));
+			}catch(Exception e) {
 				break;
-
-				
-
-			case 2:
-				
-				if(verify==0){
-					JOptionPane.showMessageDialog(null,"Cadastre um carro primeiro");
-					break;
-				}
-				
-				int desp = Integer.parseInt(JOptionPane.showInputDialog("1  Despesa de automóvel\n2  Despesa de abastecimento\n3  Despesas de manutenção\n"));
-				switch (desp){		
-
-				case 1:
-					int op = Integer.parseInt(JOptionPane.showInputDialog("1  Imposto\n2  Seguro\n3  Financiamento\n4  Multas\n"));
-					
-					String type = JOptionPane.showInputDialog("Digite o nome da despesa:");
-					int year = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano da despesa (inteiro):"));
-					double totalValue2 = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total:"));
-					switch(op){
-						case 1:
-							Automovel imp = car.get(car.size()-1);
-							imp.addImpostos(new Impostos(year,totalValue2,type));
-							car.add(car.size()-1,imp);
-							break;
-						case 2:
-							Automovel seg = car.get(car.size()-1);
-							seg.addSeguro(new Seguro(year,totalValue2,type));
-							car.add(car.size()-1,seg);
-							break;
-						case 3:
-							Automovel fin = car.get(car.size()-1);
-							fin.addFinanciamento(new Financiamento(year,totalValue2,type));
-							car.add(car.size()-1,fin);
-							System.out.println(car.get(car.size()-1).getFinanciamento());
-							break;
-						case 4:
-							Automovel mul = car.get(car.size()-1);
-							mul.addMultas(new Multas(year,totalValue2,type));
-							car.add(car.size()-1,mul);
-							break;
-						default:
-							JOptionPane.showMessageDialog(null,"Digite um número válido");
-							break;
+			}
+			switch (leitura){
+				case 0:
+				JOptionPane.showMessageDialog(null,"Saindo...");
+				saida = 0;
+				break; // Encerra a execução
+	
+				case 1: // Cadastrando um veículo
+					try{
+					String marca = JOptionPane.showInputDialog("Digite a marca:"); ///// Fazer exceção caso o usuário aperte cancelar ou ok sem ter entrado nada /// EM TUDO
+					if(marca == null || marca.isEmpty()){
+						try{
+							throw new Exception("DescricaoEmBrancoException");
+						} catch(Exception e){
+							 e.printStackTrace();
+					         System.exit(2);
+						}
 					}
-					Automovel auto = car.get(car.size()-1);
-					auto.addDespesas(new Despesas(op,year,totalValue2,type));
-					car.add(car.size()-1,auto);
-					a++;
-
-					break;
-
-				case 2:
-					String data = JOptionPane.showInputDialog("Digite a data do abastecimento:");
-					String combustivel1 = JOptionPane.showInputDialog("Digite o nome do combustível:");
-					float quilometragem1 = Float.parseFloat(JOptionPane.showInputDialog("Digite a quilometragem:"));
-					float valorLitro = Float.parseFloat(JOptionPane.showInputDialog("Digite o valor do litro:"));
-					float valorTotal = Float.parseFloat(JOptionPane.showInputDialog("Digite o valor total abastecido:"));
-					int tanque = JOptionPane.showConfirmDialog(null, "Tanque cheio? ");
+					String modelo = JOptionPane.showInputDialog("Digite o modelo:");
+					if(modelo == null || modelo.isEmpty()){
+						try{
+							throw new Exception("DescricaoEmBrancoException");
+						} catch(Exception e){
+							 e.printStackTrace();
+					         System.exit(2);
+						}
+					}
+					int anoDeModelo = Integer.parseInt(JOptionPane.showInputDialog("Digite ano de modelo (inteiro):"));
+					if(anoDeModelo <= 0){
+						try{
+							throw new Exception("ValorInvalidoException");
+						} catch(Exception e){
+							 e.printStackTrace();
+					         System.exit(2);
+						}
+					}
 					
-					Automovel abast = car.get(car.size()-1);
-					abast.addAbastecimento(new Abastecimento(data,combustivel1,quilometragem1,valorLitro,valorTotal,tanque));
-					car.add(car.size()-1,abast);
-					//System.out.println(car.get(car.size()-1).getAbastecimento());
-					b++;
-					break;
-				
-				case 3:
-					String category3 = JOptionPane.showInputDialog("Digite o nome da despesa de manutenção:");
-					float quilometragem2 = Float.parseFloat(JOptionPane.showInputDialog("Digite a quilometragem:"));
-					double totalValue3 = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total:"));
+					int anoDeFabricacao = Integer.parseInt(JOptionPane.showInputDialog("Digite ano de fabricação (inteiro):"));
+					if(anoDeFabricacao <= 0){
+						try{
+							throw new Exception("ValorInvalidoException");
+						} catch(Exception e){
+							 e.printStackTrace();
+					         System.exit(2);
+						}
+					}
+					float motorizacao = 0.0f;
+					motorizacao = Float.parseFloat(JOptionPane.showInputDialog("Digite a motorização (float):"));
+					if(motorizacao <= 0){
+						try{
+							throw new Exception("ValorInvalidoException");
+						} catch(Exception e){
+							 e.printStackTrace();
+					         System.exit(2);
+						}
+					}
 					
-					Automovel manutencao = car.get(car.size()-1);
-					manutencao.addManutencao(new Manutencao(totalValue3, category3, quilometragem2));
-					car.add(car.size()-1,manutencao);
-					c++;
-					//System.out.println(car.get(car.size()-1).getManutencao());
-					break;
+					float quilometragem = 0.0f;
+					quilometragem = Float.parseFloat(JOptionPane.showInputDialog("Digite a quilometragem atual (float):"));
+					if(quilometragem < 0){
+						try{
+							throw new Exception("ValorInvalidoException");
+						} catch(Exception e){
+							 e.printStackTrace();
+					         System.exit(2);
+						}
+					}
+					String cor = JOptionPane.showInputDialog("Digite a cor:");
+					if(cor == null || cor.isEmpty()){
+						try{
+							throw new Exception("DescricaoEmBrancoException");
+						} catch(Exception e){
+							 e.printStackTrace();
+					         System.exit(2);
+						}
+					}
+					String numPlaca = JOptionPane.showInputDialog("Digite o número da placa:");
+					if(numPlaca == null || numPlaca.isEmpty()){
+						try{
+							throw new Exception("DescricaoEmBrancoException");
+						} catch(Exception e){
+							 e.printStackTrace();
+					         System.exit(2);
+						}
+					}int numRenavam = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do Renavam (inteiro):"));
 					
-				default:
-					JOptionPane.showMessageDialog(null,"Digite uma opção válida");
-					break;
-				}		
-
-				break;
-
-			case 3:
+					int resp = JOptionPane.showConfirmDialog(null, "O veículo é flex? ");
 				
-				if(verify==0){
-					JOptionPane.showMessageDialog(null,"Cadastre um carro primeiro");
-					break;
-				}
-				
-				int select = Integer.parseInt(JOptionPane.showInputDialog("1  Relatório Simples\n2  Relatório de desempenho\n"));
-			
-				switch(select){
-					case 1:
-							
-						int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do vetor para relatório"));
+					if(resp==1){ // Veículo não é flex, cadastra só um combustível
+	
+						String[] Combustiveis = {"Gasolina", "Álcool", "Diesel"};
+						String combustivel1 = "";
 						
-						if(a == 0 && b == 0 && c == 0){
-							JOptionPane.showMessageDialog(null,"Cadastre alguma despesa primeiro");
+						int x = JOptionPane.showOptionDialog(null, "Selecione o combustível do veículo:", "Combustível", // Usuário seleciona o tipo de combustível
+								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, Combustiveis, null);
+						
+						if(x == 0) {combustivel1 = "Gasolina";}
+						if(x == 1) {combustivel1 = "Álcool";}
+						if(x == 2) {combustivel1 = "Diesel";}
+						
+						Automovel carro = new Automovel(marca, modelo, anoDeFabricacao, anoDeModelo, motorizacao,
+								combustivel1, cor, numPlaca, numRenavam, quilometragem); // Método Alternativo criando o objeto "carro" com as informações entradas
+						
+						car.add(carro); // O objeto "carro" vai para a última posição não ocupada do vetor car
+						JOptionPane.showMessageDialog(null,"Carro cadastrado:\n " + car.get(car.size()-1).toString()); // Printa o carro cadastrado
+	
+					}else if(resp==0){ // Veículo é flex, cadastra DOIS combustíveos
+						
+						String[] Combustiveis = {"Gasolina", "Álcool", "Diesel"};
+						String combustivel1 = "";
+						String combustivel2 = "";
+						
+						int x = JOptionPane.showOptionDialog(null, "Selecione um dos combustíveis do veículo:", "Combustível", // Usuário seleciona o tipo de combustível1
+								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, Combustiveis, null);
+						
+						if(x == 0) {combustivel1 = "Gasolina";}
+						if(x == 1) {combustivel1 = "Álcool";}
+						if(x == 2) {combustivel1 = "Diesel";}
+						
+						int y = JOptionPane.showOptionDialog(null, "Selecione o outro combustível usado no veículo:", "Combustível", // Usuário seleciona o tipo de combustível2
+								JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, Combustiveis, null);
+						
+						if(y == 0) {combustivel2 = "Gasolina";}
+						if(y == 1) {combustivel2 = "Álcool";}
+						if(y == 2) {combustivel2 = "Diesel";}
+						
+						if(x == y) {
+							JOptionPane.showMessageDialog(null,"Os dois tipos de combustível não podem ser iguais.");
 							break;
-						}else
-							if(c!=0){
-							JOptionPane.showMessageDialog(null,car.get(valor).getManutencao());
-							}
-							if(b!=0){
-							JOptionPane.showMessageDialog(null,car.get(valor).getAbastecimento());
-							}
-							if(a!=0){
-							JOptionPane.showMessageDialog(null,car.get(valor).getDespesas());
-							}
+						}
 						
+						Automovel carro = new Automovel(marca, modelo, anoDeFabricacao, anoDeModelo, motorizacao,
+								combustivel1, cor, numPlaca, numRenavam, quilometragem); // Método Alternativo criando....
+				
+						carro.setCombustivel2(combustivel2); // Colocando na mão o combustível2 por ser flex
+						car.add(carro); // O objeto "carro" vai para a última posição não ocupada do vetor car
+						JOptionPane.showMessageDialog(null,"Carro cadastrado:\n " + car.get(car.size()-1).toString()); // Printa o carro cadastrado
+					} else {
+						break;
+					}
+					verify++; // Se eu cadastrei um carro, verify != 0, então o usuário pode registrar despesas para o mesmo
+					
+					}catch(java.lang.NumberFormatException e){ // Se alguma entrada não cumpriu o formato, para o cadastro e volta pro menu
+						JOptionPane.showMessageDialog(null,"Digite o formato pedido");
+					}
+	
+					break; // Volta pro menu principal
+	
+					
+				case 2: // Registrar Despesas
+//					System.out.println(car);
+					if(verify==0){ // Impede de cadastrar despesas para um carro não existente
+						JOptionPane.showMessageDialog(null,"Cadastre um carro primeiro"); 
+						break; // Volta pro menu
+					}
+					
+					int desp = Integer.parseInt(JOptionPane.showInputDialog("1)  Despesa de automóvel\n2)  Despesa de abastecimento\n3)  Despesas de manutenção\n"));
+					
+					switch (desp){
+						case 1: // Despesa de Automóvel
+							int op = Integer.parseInt(JOptionPane.showInputDialog("1)  Imposto\n2)  Seguro\n3)  Financiamento\n4)  Multas\n"));
+							
+							String type = JOptionPane.showInputDialog("Digite o nome da despesa:");
+							if(type == null || type.isEmpty()){
+								try{
+									throw new Exception("DescricaoEmBrancoException");
+								} catch(Exception e){
+									 e.printStackTrace();
+							         System.exit(2);
+								}
+							}
+							int year = Integer.parseInt(JOptionPane.showInputDialog("Digite o ano da despesa (inteiro):")); // Informações de todo tipo de despesa
+							double totalValue2 = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total:"));
+							
+							Automovel auto = car.get(car.size()-1);
+							//car.remove(car.size()-1);
+							auto.addDespesas(new Despesas(op,year,totalValue2,type));
+							//5car.add(car.size()-1,auto);
+							a++;
+	
+							break;
+	
+						case 2: // Despesa de Abastecimento
+							
+							String[] Combustiveis = {"Gasolina", "Álcool", "Diesel"};
+							String combustivel1 = null;
+							
+							String data = JOptionPane.showInputDialog("Digite a data do abastecimento:");
+							if(car.get(car.size()-1).combustivel2 == "") {
+								
+								int x = JOptionPane.showOptionDialog(null, "Selecione o combustível abastecido:", "Abastecimento", // Usuário seleciona o tipo de combustível1
+										JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, Combustiveis, null);
+								
+								if(x == 0) {combustivel1 = "Gasolina";}
+								else if(x == 1) {combustivel1 = "Álcool";}
+								else if(x == 2) {combustivel1 = "Diesel";}
+								
+								if(!combustivel1.toUpperCase().equals(car.get(car.size()-1).combustivel1)) { // Confere se o carro usa o combustivel escolhido para abastecer
+									JOptionPane.showMessageDialog(null,"Seu carro não usa esse tipo de combustível.");
+									break;
+								}
+								
+							} else {
+								
+								int y = JOptionPane.showOptionDialog(null, "Selecione o combustível abastecido:", "Abastecimento", // Usuário seleciona o tipo de combustível1
+										JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, Combustiveis, null);
+								
+								if(y == 0) {combustivel1 = "Gasolina";}
+								else if(y == 1) {combustivel1 = "Álcool";}
+								else if(y == 2) {combustivel1 = "Diesel";}
+								
+								if(!combustivel1.toUpperCase().equals(car.get(car.size()-1).combustivel1) && !combustivel1.toUpperCase().equals(car.get(car.size()-1).combustivel2)) { // Confere se o carro usa o combustivel escolhido para abastecer
+									JOptionPane.showMessageDialog(null,"Seu carro não usa esse tipo de combustível.");
+									break;
+								}
+								
+							}
+							
+							float quilometragem = Float.parseFloat(JOptionPane.showInputDialog("Digite a quilometragem atual:"));
+							float valorLitro = Float.parseFloat(JOptionPane.showInputDialog("Digite o valor do litro:"));
+							float valorTotal = Float.parseFloat(JOptionPane.showInputDialog("Digite o valor total abastecido:"));
+							int tanque = JOptionPane.showConfirmDialog(null, "Tanque cheio?");
+							
+							if(tanque == 0)
+							{
+								car.get(car.size()-1).tanque++;
+							}
+							car.get(car.size()-1).litros = valorTotal/valorLitro;
+							Automovel abast = car.get(car.size()-1);
+							abast.addAbastecimento(new Abastecimento(data,combustivel1, quilometragem, car.get(car.size()-1).getQuilometragem(),
+									valorLitro,valorTotal));
+							
+							car.get(car.size()-1).setQuilometragem(quilometragem);
 						
+							//car.add(car.size()-1,abast);
+							b++;
+							break;
+						
+						case 3: // Despesas de manutenção
+							String category = JOptionPane.showInputDialog("Digite o nome da despesa de manutenção:");
+							if(category == null || category.isEmpty()){
+								try{
+									throw new Exception("DescricaoEmBrancoException");
+								} catch(Exception e){
+									 e.printStackTrace();
+							         System.exit(2);
+								}
+							}
+							float quilometragem1 = Float.parseFloat(JOptionPane.showInputDialog("Digite a quilometragem:"));
+							double totalValue = Double.parseDouble(JOptionPane.showInputDialog("Digite o valor total:"));
+							Automovel manutencao = car.get(car.size()-1);
+							manutencao.addManutencao(new Manutencao(totalValue, category, quilometragem1, car.get(car.size()-1).getQuilometragem()));
+							car.get(car.size()-1).setQuilometragem(quilometragem1);
+							//car.add(car.size()-1,manutencao);
+							c++;
+							break;
+							
+						default:
+							JOptionPane.showMessageDialog(null,"Digite uma opção válida");
+							break;
+						}
+	
 						break;
-
-					case 2:
+	
+					case 3:
+						
+						if(verify==0){
+							JOptionPane.showMessageDialog(null,"Cadastre um carro primeiro");
+							break;
+						}
+						
+						int select = Integer.parseInt(JOptionPane.showInputDialog("1)  Relatório Simples\n2)  Relatório de desempenho\n"));
+					
+						switch(select){
+							case 1:
+									
+								if(a == 0 && b == 0 && c == 0){
+									JOptionPane.showMessageDialog(null,"Cadastre alguma despesa primeiro");
+									break;
+								}else {
+									
+									try{
+									int valor = Integer.parseInt(JOptionPane.showInputDialog("Digite o número do vetor"+"( de 1 até "+ car.size()+" para relatório")) -1;
+									if(c!=0){
+									
+									JOptionPane.showMessageDialog(null,car.get(valor).getManutencao());
+									}
+									if(b!=0){
+									JOptionPane.showMessageDialog(null,car.get(valor).getAbastecimento());
+									}
+									if(a!=0){
+									JOptionPane.showMessageDialog(null,car.get(valor).getDespesas());
+									
+									}
+									}catch(java.lang.IndexOutOfBoundsException e){
+										JOptionPane.showMessageDialog(null,"Vetor não existente");
+									}
+								}
+						
+							break;
+		
+							case 2:
+								
+								if(car.get(car.size()-1).getTanque() != 2)
+								{
+									JOptionPane.showMessageDialog(null,"Você só pode acessar este relatório se realizar dois abastecimentos completos seguidos.");
+									break;
+								}
+								
+								
+								float consumo = ((car.get(car.size()-1).getQuilometragem() - car.get(car.size()-1).getAnterior())/car.get(car.size()-1).litros);
+								JOptionPane.showMessageDialog(null, "Km atuais: \n" + car.get(car.size()-1).getQuilometragem());
+								JOptionPane.showMessageDialog(null, "Km anterior: \n" + car.get(car.size()-1).getAnterior()); /////// Dando zero, corrigir
+								JOptionPane.showMessageDialog(null, "Km Desejados: (atual - anterior)\n" + (car.get(car.size()-1).getQuilometragem() - 2*car.get(car.size()-1).getAnterior()));
+								JOptionPane.showMessageDialog(null, "Litros: \n" + car.get(car.size()-1).litros);
+								JOptionPane.showMessageDialog(null, "Consumo médio: (km/litro)\n" + consumo);
+								
+								car.get(car.size()-1).setTanque(car.get(car.size()-1).getTanque()-1);
+								break;
+								
+							default:
+								try{
+									throw new Exception("ValorInvalidoException");
+								} catch(Exception e){
+									 e.printStackTrace();
+							         System.exit(2);
+								}
+								break;					
+						}
+		
 						break;
+		
+						
 					default:
 						JOptionPane.showMessageDialog(null,"Digite uma opção válida");
-						break;					
+						break;
 				}
-
-				break;
-
-				
-			default:
-				JOptionPane.showMessageDialog(null,"Digite uma opção válida");
-				break;
-		}
-
-		}
+	
+			}
 
 
 
