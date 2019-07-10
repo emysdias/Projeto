@@ -10,9 +10,11 @@ public class Despesas {
 	private int year;
 	private double totalValue;
 	private String type;
+	protected int op;
 	public Despesas(){}
 
-	public Despesas(int year, double totalValue, String type) {
+	public Despesas(int op,int year, double totalValue, String type) {
+		this.op = op;
 		this.year = year;
 		this.totalValue = totalValue;
 		this.type = type;
@@ -45,10 +47,23 @@ public class Despesas {
 
 	@Override
 	public String toString() {
-		return "Despesas [year=" + year + ", totalValue=" + totalValue
-				+ ", type=" + type + "]";
+		
+		if(op==1){
+			
+		return "\nDespesas:\n\n>>Imposto " + "\nNome da despesa = " + type + "\nTotal pago = " + totalValue
+				+ "\nAno em que ocorreu = " + year + "";
+		}
+		else if(op==2){
+			return "\nDespesas:\n\n>>Seguro " + "\nNome da despesa = " + type + "\nTotal pago = " + totalValue
+					+ "\nAno em que ocorreu = " + year + "";
+		}
+		else if(op==3){
+			return "\nDespesas:\n\n>>Financiamento " + "\nNome da despesa = " + type + "\nTotal pago = " + totalValue
+					+ "\nAno em que ocorreu = " + year + "";
+		}
+		return "\nDespesas:\n\n>>Multas " + "\nNome da despesa = " + type + "\nTotal pago = " + totalValue
+				+ "\nAno em que ocorreu = " + year + "";
+		
 	}
-
-	
 
 }
