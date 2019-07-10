@@ -6,12 +6,6 @@ package entities;
 
 
 
-import java.util.Date;
-
-
-
-
-
 
 
 public class Abastecimento extends Despesas {
@@ -20,24 +14,23 @@ public class Abastecimento extends Despesas {
 
 	private float anterior;
 	private float atual;
-	private Date data;
+	private String data;
 	private String tipoDeCombustivel;
 	private float quilometragem;
 	private float valorDoLitro;
-	private double tipoDoAbastecimento;
-	private float valorAbastecido;
+	private double valorAbastecido;
 
 
-	public Abastecimento(String tipoDeCombustivel, float quilometragem, float valorDoLitro,
-
-			double tipoDoAbastecimento) {
-
+	public Abastecimento(String data,String tipoDeCombustivel, float quilometragem, float valorDoLitro,
+			double valorAbastecido, int tanque) {
 		
-
+		
+		this.atual = atual;
+		this.data = data;
 		this.tipoDeCombustivel = tipoDeCombustivel;
 		this.quilometragem = quilometragem;
 		this.valorDoLitro = valorDoLitro;
-		this.tipoDoAbastecimento = tipoDoAbastecimento;
+		this.valorAbastecido = valorAbastecido;
 
 	}
 
@@ -49,6 +42,19 @@ public class Abastecimento extends Despesas {
 		return valorDoLitro * litrosAbastecidos;
 
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "\nAbastecimento:\nOdômetro anterior = " + anterior + "\nOdômetro atual = " + quilometragem
+				+ "\nData = " + data + "\nTipo de combustível = " + tipoDeCombustivel
+				+ "\nValor total do abastecimento = "
+				+ valorDoLitro
+				+ "\nQuantidade abastecida em litros = " + valorAbastecido + "";
+	}
+	
+	
 
 
 }
