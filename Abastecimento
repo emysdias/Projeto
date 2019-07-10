@@ -2,18 +2,9 @@ package entities;
 
 
 
-
-
-
-
-
-
 public class Abastecimento extends Despesas {
 
-
-
 	private float anterior;
-	private float atual;
 	private String data;
 	private String tipoDeCombustivel;
 	private float quilometragem;
@@ -21,22 +12,18 @@ public class Abastecimento extends Despesas {
 	private double valorAbastecido;
 
 
-	public Abastecimento(String data,String tipoDeCombustivel, float quilometragem, float valorDoLitro,
-			double valorAbastecido, int tanque) {
+	public Abastecimento(String data,String tipoDeCombustivel, float quilometragem, float anterior, float valorDoLitro, double valorAbastecido) {
 		
-		
-		this.atual = atual;
 		this.data = data;
 		this.tipoDeCombustivel = tipoDeCombustivel;
 		this.quilometragem = quilometragem;
+		this.anterior = anterior;
 		this.valorDoLitro = valorDoLitro;
 		this.valorAbastecido = valorAbastecido;
 
 	}
 
-
-
-	public double Abastecimento(float valorDoLitro, float litrosAbastecidos  ) {
+	public double abastecimento(float valorDoLitro, float litrosAbastecidos  ) {
 
 		this.valorAbastecido = valorDoLitro * litrosAbastecidos; 
 		return valorDoLitro * litrosAbastecidos;
@@ -44,17 +31,22 @@ public class Abastecimento extends Despesas {
 	}
 
 
-
 	@Override
 	public String toString() {
-		return "\nAbastecimento:\nOdômetro anterior = " + anterior + "\nOdômetro atual = " + quilometragem
-				+ "\nData = " + data + "\nTipo de combustível = " + tipoDeCombustivel
-				+ "\nValor total do abastecimento = "
-				+ valorDoLitro
-				+ "\nQuantidade abastecida em litros = " + valorAbastecido + "";
+		
+		float temp = anterior;
+		anterior = quilometragem;
+		
+		
+		return "\nAbastecimento:\nData: " + data
+				+ "\nTipo de combustível: " + tipoDeCombustivel
+				+ "\nValor total do abastecimento: " + valorAbastecido
+				+ "\nLitros abastecidos: " + ((float)(valorAbastecido/valorDoLitro))
+				+ "\nQuilometragem anterior: " + temp
+				+ "\nQuilometragem atual: " + quilometragem + "\n";
+		
+		}
+
+
+
 	}
-	
-	
-
-
-}
