@@ -5,15 +5,13 @@ package entities;
 
 public class Seguro extends Despesas {
 
-
-
-	public Seguro(int year, double totalValue, String type) {
-		super(year, totalValue, type);
-		
-	}
-
 	private String empresa;
 	private float valorDoSeguro;
+
+	public Seguro(int year, double totalValue, String type) {
+		
+	}
+	
 	public String getEmpresa() {
 		return empresa;
 	}
